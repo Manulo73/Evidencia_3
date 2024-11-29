@@ -1,0 +1,383 @@
+:root {
+    --almostBlack: rgb(70, 70, 70);
+    --secondGreen: rgb(147, 234, 147);
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+h1, h2, h3, h4 {
+    color: var(--almostBlack);
+}
+
+button {
+    padding: 5px 5px;
+    border-radius: 5px;
+    border-width: 0px;
+    cursor: pointer;
+}
+
+/* General table styles */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Removes spacing between cells */
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for elevation */
+    border-radius: 8px;
+    overflow: hidden; /* Ensures rounded corners are applied to the whole table */
+    background-color: #fff;
+}
+
+/* Header styles */
+table thead tr {
+    background-color: green; /* A cool blue header */
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: bold;
+}
+
+table th,
+table td {
+    padding: 12px 15px; /* Comfortable spacing */
+    border: 1px solid #ddd; /* Light border for structure */
+}
+
+table th {
+    font-size: 14px;
+}
+
+/* Row styles */
+table tbody tr {
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+table tbody tr:hover {
+    background-color: #f5f5f5; /* Highlight the row on hover */
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Subtle zebra striping */
+}
+
+table td input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Button in footer */
+table tfoot td {
+    text-align: center;
+}
+
+table tfoot button {
+    background-color: green;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+table tfoot button:hover {
+    background-color: rgb(3, 108, 3);
+}
+
+/* Top Bar */
+
+#topBar {
+    height: fit-content;
+    width: 100%;
+    padding: 15px 0px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    background-color: aliceblue;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+#topBar_title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--almostBlack);
+    cursor: pointer;
+}
+
+#topBar_title h1 {
+    margin: 0px 2px;
+}
+
+.colorText {
+    color: green;
+}
+
+/* Dashboard Profile */
+
+#profileContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    width: 100%;
+    padding: 20px 25px;
+    box-sizing: border-box;
+}
+
+#profileContainer hr {
+    width: 25%;
+    margin: 5px 0px;
+    border-color: green;
+}
+
+/* Dashboard Notes */
+
+#dashboardContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    padding: 20px 25px;
+    box-sizing: border-box;
+
+    height: auto;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+#monthDashboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: stretch;
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.monthContainer {
+    flex: 1 1 calc(33.333% - 40px);
+    max-width: calc(33.333% - 40px);
+    min-width: 150px;
+    padding: 20px;
+    border: 0px solid #ccc;
+    border-radius: 8px;
+    text-align: center;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.monthContainer:hover {
+    background-color: #d3fcdd;
+}
+
+.monthContainer button {
+    margin: 10px 0px 0px 0px;
+    font-weight: 400;
+    background-color: var(--secondGreen);
+    transition: 250ms ease-in-out;
+    box-shadow: 0px 0px 3px green;
+}
+
+.monthContainer button:hover {
+    box-shadow: 0px 0px 6px green;
+}
+
+/* Mes Things */
+
+#mesStats {
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#mesStatsContent {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+    width: 100%;
+    align-items: stretch;
+}
+
+.stat {
+    flex: 0 1 calc(50% - 10px);
+    box-sizing: border-box;
+    background-color: rgb(238, 246, 253);
+    padding: 15px;
+    margin: 5px 0px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#saveMoney {
+    width: 50%;
+    padding: 8px;
+    box-sizing: border-box;
+    border:2px solid green;
+    border-radius: 4px;
+    font-size: 14px;
+    margin: 10px 0px 0px 0px;
+}
+
+@media (max-width: 1000px) {
+    .stat {
+        flex: 0 1 100%;
+    }
+}
+
+.moneystuff {
+    margin: 5px 0px 0px 0px;
+}
+
+#updateBtn {
+    background-color: green;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 20px 0px 0px 0px;
+    transition: background-color 0.3s ease;
+}
+
+#saveData {
+    margin: 10px 0px 25px 0px;
+    font-weight: 400;
+    background-color: var(--secondGreen);
+    transition: 250ms ease-in-out;
+    box-shadow: 0px 0px 3px green;
+    align-self: center;
+    justify-content: center;
+    position: relative;
+}
+
+#saveData:hover {
+    box-shadow: 0px 0px 6px green;
+}
+
+/* Week stuff */
+
+#weekStats {
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#weekStatsContent {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+    width: 100%;
+    align-items: stretch;
+}
+
+.week {
+    box-sizing: border-box;
+    background-color: rgb(238, 246, 253);
+    padding: 15px;
+    margin: 5px 0px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.weekTitle {
+    align-self: center;
+    justify-self: center;
+}
+
+#weekmonthStats {
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#weekmonthStats img {
+    min-width: 500px;
+    max-width: 800px;
+    margin: 40px 0px 0px 0px;
+}
+
+.moneystuff {
+    color: green;
+}
+
+#reviewContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 50px 0px;
+    background-color: rgba(196, 196, 196, 0.1);
+}
+
+#reviewContainer hr {
+    width: 20%;
+    margin: 15px 0px 0px 0px;
+    border-color: green;
+}
+
+#reviewContainer p {
+    max-width: 500px;
+    text-align: center;
+    margin: 10px 0px;
+    font-size: larger;
+}
+
+#reviewContainer ul {
+    font-size: larger;
+}

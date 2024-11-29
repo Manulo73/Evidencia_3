@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles de Enero</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="main.js" defer></script>
+</head>
+
+<body>
+    <div id="topBar">
+        <div id="topBar_title">
+            <h1 class="colorText">Kakebo</h1> <h1>App</h1>
+        </div>
+    </div>
+
+    <div id="mesStats">
+        <h1>Datos del Mes</h1>
+        <div id="mesStatsContent">
+            <div class="stat">
+                <h2>¿Cuánto dinero vas a ingresar?</h2>
+                <table id="ingresosTable">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Origen</th>
+                            <th>Cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="date" name="ingresoFecha[]" /></td>
+                            <td><input type="text" name="ingresoOrigen[]" placeholder="Origen" /></td>
+                            <td><input type="number" name="ingresoCantidad[]" placeholder="Cantidad" /></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3">
+                                <button type="button" onclick="addIngreso()">Añadir Ingreso</button>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <div class="stat">
+                <h2>¿Cuánto dinero tienes previsto gastar?</h2>
+                <table id="gastosTable">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Categoría</th>
+                            <th>Cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="date" name="gastoFecha[]" /></td>
+                            <td><input type="text" name="gastoCategoria[]" placeholder="Categoría" /></td>
+                            <td><input type="number" name="gastoCantidad[]" placeholder="Cantidad" /></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3">
+                                <button type="button" onclick="addGasto()">Añadir Gasto</button>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <div class="stat" id="saveStat">
+                <h2>¿Cuánto quieres ahorrar?</h2>
+                <input type="number" id="saveMoney" placeholder="Cantidad">
+            </div>
+
+            <div class="stat">
+                <h2>¿Cuánto dinero dispones?</h2>
+                <h2 id="ab" class="moneystuff">0</h2>
+                <h2>¿Cuánto deberias gastar al mes?</h2>
+                <h2 id="cd" class="moneystuff">0</h2>
+                <h2>¿Cuánto deberias gastar a la semana?</h2>
+                <h2 id="cd4" class="moneystuff">0</h2>
+                <button id="updateBtn">Actualizar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="weekStats">
+        <h1>Datos de las Semanas</h1>
+        <div id="weekStatsContent">
+            <div class="week">
+                <h2 class="weekTitle">Semana 1</h2>
+                <table id="expenseTable">
+                    <thead>
+                        <tr>
+                            <th>CATEGORÍA</th>
+                            <th>Lun</th>
+                            <th>Mar</th>
+                            <th>Mié</th>
+                            <th>Jue</th>
+                            <th>Vie</th>
+                            <th>Sáb</th>
+                            <th>Dom</th>
+                            <th>TOTAL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>TRANSPORTE</td>
+                            <td><input type="number" name="lunes[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="martes[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="miercoles[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="jueves[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="viernes[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="sabado[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="domingo[]" value="0" oninput="updateTotals(0)"></td>
+                            <td class="category-total">0</td>
+                        </tr>
+                        <tr>
+                            <td>SUPERMERCADO</td>
+                            <td><input type="number" name="lunes[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="martes[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="miercoles[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="jueves[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="viernes[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="sabado[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="domingo[]" value="0" oninput="updateTotals(0)"></td>
+                            <td class="category-total">0</td>
+                        </tr>
+                        <tr>
+                            <td>ANTOJO</td>
+                            <td><input type="number" name="lunes[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="martes[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="miercoles[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="jueves[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="viernes[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="sabado[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="domingo[]" value="0" oninput="updateTotals(0)"></td>
+                            <td class="category-total">0</td>
+                        </tr>
+                        <tr>
+                            <td>PASEO</td>
+                            <td><input type="number" name="lunes[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="martes[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="miercoles[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="jueves[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="viernes[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="sabado[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="domingo[]" value="0" oninput="updateTotals(0)"></td>
+                            <td class="category-total">0</td>
+                        </tr>
+                        <tr>
+                            <td>SALDO</td>
+                            <td><input type="number" name="lunes[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="martes[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="miercoles[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="jueves[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="viernes[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="sabado[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="domingo[]" value="0" oninput="updateTotals(0)"></td>
+                            <td class="category-total">0</td>
+                        </tr>
+                        <tr>
+                            <td>REGALO</td>
+                            <td><input type="number" name="lunes[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="martes[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="miercoles[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="jueves[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="viernes[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="sabado[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="domingo[]" value="0" oninput="updateTotals(0)"></td>
+                            <td class="category-total">0</td>
+                        </tr>
+                        <tr>
+                            <td>EMERGENCIA</td>
+                            <td><input type="number" name="lunes[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="martes[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="miercoles[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="jueves[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="viernes[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="sabado[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="domingo[]" value="0" oninput="updateTotals(0)"></td>
+                            <td class="category-total">0</td>
+                        </tr>
+                        <tr>
+                            <td>SALUD</td>
+                            <td><input type="number" name="lunes[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="martes[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="miercoles[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="jueves[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="viernes[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="sabado[]" value="0" oninput="updateTotals(0)"></td>
+                            <td><input type="number" name="domingo[]" value="0" oninput="updateTotals(0)"></td>
+                            <td class="category-total">0</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td>TOTAL</td>
+                            <td id="totalLunes">0</td>
+                            <td id="totalMartes">0</td>
+                            <td id="totalMiercoles">0</td>
+                            <td id="totalJueves">0</td>
+                            <td id="totalViernes">0</td>
+                            <td id="totalSabado">0</td>
+                            <td id="totalDomingo">0</td>
+                            <td id="grandTotal">0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="week">
+                <h2 class="weekTitle">Semana 2</h2>
+                <table id="expenseTable1">
+                    <thead>
+                        <tr>
+                            <th>CATEGORÍA</th>
+                            <th>Lun</th>
+                            <th>Mar</th>
+                            <th>Mié</th>
+                            <th>Jue</th>
+                            <th>Vie</th>
+                            <th>Sáb</th>
+                            <th>Dom</th>
+                            <th>TOTAL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>TRANSPORTE</td>
+                            <td><input type="number" name="lunes[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="martes[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="miercoles[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="jueves[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="viernes[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="sabado[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="domingo[]" value="0" oninput="updateTotals(1)"></td>
+                            <td class="category-total">0</td>
+                        </tr>
+                        <tr>
+                            <td>SUPERMERCADO</td>
+                            <td><input type="number" name="lunes[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="martes[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="miercoles[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="jueves[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="viernes[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="sabado[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="domingo[]" value="0" oninput="updateTotals(1)"></td>
+                            <td class="category-total">0</td>
+                        </tr>
+                        <tr>
+                            <td>ANTOJO</td>
+                            <td><input type="number" name="lunes[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="martes[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="miercoles[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="jueves[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="viernes[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="sabado[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="domingo[]" value="0" oninput="updateTotals(1)"></td>
+                            <td class="category-total">0</td>
+                        </tr>
+                        <tr>
+                            <td>PASEO</td>
+                            <td><input type="number" name="lunes[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="martes[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="miercoles[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="jueves[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="viernes[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="sabado[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="domingo[]" value="0" oninput="updateTotals(1)"></td>
+                            <td class="category-total">0</td>
+                        </tr>
+                        <tr>
+                            <td>SALDO</td>
+                            <td><input type="number" name="lunes[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="martes[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="miercoles[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="jueves[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="viernes[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="sabado[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="domingo[]" value="0" oninput="updateTotals(1)"></td>
+                            <td class="category-total">0</td>
+                        </tr>
+                        <tr>
+                            <td>REGALO</td>
+                            <td><input type="number" name="lunes[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="martes[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="miercoles[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="jueves[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="viernes[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="sabado[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="domingo[]" value="0" oninput="updateTotals(1)"></td>
+                            <td class="category-total">0</td>
+                        </tr>
+                        <tr>
+                            <td>EMERGENCIA</td>
+                            <td><input type="number" name="lunes[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="martes[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="miercoles[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="jueves[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="viernes[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="sabado[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="domingo[]" value="0" oninput="updateTotals(1)"></td>
+                            <td class="category-total">0</td>
+                        </tr>
+                        <tr>
+                            <td>SALUD</td>
+                            <td><input type="number" name="lunes[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="martes[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="miercoles[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="jueves[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="viernes[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="sabado[]" value="0" oninput="updateTotals(1)"></td>
+                            <td><input type="number" name="domingo[]" value="0" oninput="updateTotals(1)"></td>
+                            <td class="category-total">0</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td>TOTAL</td>
+                            <td id="totalLunes1">0</td>
+                            <td id="totalMartes1">0</td>
+                            <td id="totalMiercoles1">0</td>
+                            <td id="totalJueves1">0</td>
+                            <td id="totalViernes1">0</td>
+                            <td id="totalSabado1">0</td>
+                            <td id="totalDomingo1">0</td>
+                            <td id="grandTotal1">0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="week">
+                <h2 class="weekTitle">Semana 3</h2>
+                <table id="expenseTable2">
+                    <thead>
+                        <tr>
+                            <th>CATEGORÍA</th>
+                            <th>Lun</th>
+                            <th>Mar</th>
+                            <th>Mié</th>
+                            <th>Jue</th>
+                            <th>Vie</th>
+                            <th>Sáb</th>
+                            <th>Dom</th>
+                            <th>TOTAL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>TRANSPORTE</td>
+                            <td><input type="number" name="lunes[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="martes[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="miercoles[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="jueves[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="viernes[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="sabado[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="domingo[]" value="0" oninput="updateTotals(2)"></td>
+                            <td class="category-total">0</td>
+                        </tr>
+                        <tr>
+                            <td>SUPERMERCADO</td>
+                            <td><input type="number" name="lunes[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="martes[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="miercoles[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="jueves[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="viernes[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="sabado[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="domingo[]" value="0" oninput="updateTotals(2)"></td>
+                            <td class="category-total">0</td>
+                        </tr>
+                        <tr>
+                            <td>ANTOJO</td>
+                            <td><input type="number" name="lunes[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="martes[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="miercoles[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="jueves[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="viernes[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="sabado[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="domingo[]" value="0" oninput="updateTotals(2)"></td>
+                            <td class="category-total">0</td>
+                        </tr>
+                        <tr>
+                            <td>PASEO</td>
+                            <td><input type="number" name="lunes[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="martes[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="miercoles[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="jueves[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="viernes[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="sabado[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="domingo[]" value="0" oninput="updateTotals(2)"></td>
+                            <td class="category-total">0</td>
+                        </tr>
+                        <tr>
+                            <td>SALDO</td>
+                            <td><input type="number" name="lunes[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="martes[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="miercoles[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="jueves[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="viernes[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="sabado[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="domingo[]" value="0" oninput="updateTotals(2)"></td>
+                            <td class="category-total">0</td>
+                        </tr>
+                        <tr>
+                            <td>REGALO</td>
+                            <td><input type="number" name="lunes[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="martes[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="miercoles[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="jueves[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="viernes[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="sabado[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="domingo[]" value="0" oninput="updateTotals(2)"></td>
+                            <td class="category-total">0</td>
+                        </tr>
+                        <tr>
+                            <td>EMERGENCIA</td>
+                            <td><input type="number" name="lunes[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="martes[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="miercoles[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="jueves[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="viernes[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="sabado[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="domingo[]" value="0" oninput="updateTotals(2)"></td>
+                            <td class="category-total">0</td>
+                        </tr>
+                        <tr>
+                            <td>SALUD</td>
+                            <td><input type="number" name="lunes[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="martes[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="miercoles[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="jueves[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="viernes[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="sabado[]" value="0" oninput="updateTotals(2)"></td>
+                            <td><input type="number" name="domingo[]" value="0" oninput="updateTotals(2)"></td>
+                            <td class="category-total">0</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td>TOTAL</td>
+                            <td id="totalLunes2">0</td>
+                            <td id="totalMartes2">0</td>
+                            <td id="totalMiercoles2">0</td>
+                            <td id="totalJueves2">0</td>
+                            <td id="totalViernes2">0</td>
+                            <td id="totalSabado2">0</td>
+                            <td id="totalDomingo2">0</td>
+                            <td id="grandTotal2">0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="week">
+                <h2 class="weekTitle">Semana 4</h2>
+                <table id="expenseTable3">
+                    <thead>
+                        <tr>
+                            <th>CATEGORÍA</th>
+                            <th>Lun</th>
+                            <th>Mar</th>
+                            <th>Mié</th>
+                            <th>Jue</th>
+                            <th>Vie</th>
+                            <th>Sáb</th>
+                            <th>Dom</th>
+                            <th>TOTAL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>TRANSPORTE</td>
+                            <td><input type="number" name="lunes[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="martes[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="miercoles[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="jueves[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="viernes[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="sabado[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="domingo[]" value="0" oninput="updateTotals(3)"></td>
+                            <td class="category-total">0</td>
+                        </tr>
+                        <tr>
+                            <td>SUPERMERCADO</td>
+                            <td><input type="number" name="lunes[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="martes[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="miercoles[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="jueves[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="viernes[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="sabado[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="domingo[]" value="0" oninput="updateTotals(3)"></td>
+                            <td class="category-total">0</td>
+                        </tr>
+                        <tr>
+                            <td>ANTOJO</td>
+                            <td><input type="number" name="lunes[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="martes[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="miercoles[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="jueves[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="viernes[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="sabado[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="domingo[]" value="0" oninput="updateTotals(3)"></td>
+                            <td class="category-total">0</td>
+                        </tr>
+                        <tr>
+                            <td>PASEO</td>
+                            <td><input type="number" name="lunes[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="martes[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="miercoles[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="jueves[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="viernes[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="sabado[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="domingo[]" value="0" oninput="updateTotals(3)"></td>
+                            <td class="category-total">0</td>
+                        </tr>
+                        <tr>
+                            <td>SALDO</td>
+                            <td><input type="number" name="lunes[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="martes[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="miercoles[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="jueves[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="viernes[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="sabado[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="domingo[]" value="0" oninput="updateTotals(3)"></td>
+                            <td class="category-total">0</td>
+                        </tr>
+                        <tr>
+                            <td>REGALO</td>
+                            <td><input type="number" name="lunes[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="martes[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="miercoles[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="jueves[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="viernes[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="sabado[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="domingo[]" value="0" oninput="updateTotals(3)"></td>
+                            <td class="category-total">0</td>
+                        </tr>
+                        <tr>
+                            <td>EMERGENCIA</td>
+                            <td><input type="number" name="lunes[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="martes[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="miercoles[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="jueves[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="viernes[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="sabado[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="domingo[]" value="0" oninput="updateTotals(3)"></td>
+                            <td class="category-total">0</td>
+                        </tr>
+                        <tr>
+                            <td>SALUD</td>
+                            <td><input type="number" name="lunes[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="martes[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="miercoles[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="jueves[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="viernes[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="sabado[]" value="0" oninput="updateTotals(3)"></td>
+                            <td><input type="number" name="domingo[]" value="0" oninput="updateTotals(3)"></td>
+                            <td class="category-total">0</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td>TOTAL</td>
+                            <td id="totalLunes3">0</td>
+                            <td id="totalMartes3">0</td>
+                            <td id="totalMiercoles3">0</td>
+                            <td id="totalJueves3">0</td>
+                            <td id="totalViernes3">0</td>
+                            <td id="totalSabado3">0</td>
+                            <td id="totalDomingo3">0</td>
+                            <td id="grandTotal3">0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="weekmonthStats">
+        <h2>¿Cuánto dinero has gastado?</h2>
+        <h2 id="r1" class="moneystuff">0</h2>
+        <h2>¿Cuánto has ahorrado este mes?</h2>
+        <h2 id="r2" class="moneystuff">0</h2>
+        <img src="images/graph.png" alt="">
+    </div>
+
+    <button id="saveData">Guardar Información</button>
+
+</body>
+
+</html>
